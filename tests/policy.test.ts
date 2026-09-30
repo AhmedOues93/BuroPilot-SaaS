@@ -1,0 +1,3 @@
+import {describe,expect,it} from "vitest";import {decideAction} from "../src/lib/workflow/policy";
+const base={automaticReplyAllowed:true,priceSendingAllowed:false,complaintsRequireApproval:true};
+describe("business policy gate",()=>{it("requires approval before an AI reply containing prices",()=>{expect(decideAction({type:"SEND_REPLY",reasonCode:"READY",reasonSummary:"Antwort ist vorbereitet",payload:{containsPrice:true}},base).mode).toBe("APPROVAL_REQUIRED")});it("allows a safe reply when tenant policy allows it",()=>{expect(decideAction({type:"SEND_REPLY",reasonCode:"READY",reasonSummary:"Einfache Eingangsbestätigung",payload:{containsPrice:false}},base).mode).toBe("AUTO")})});
