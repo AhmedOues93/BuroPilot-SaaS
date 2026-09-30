@@ -1,0 +1,3 @@
+import Link from "next/link";
+import { signIn } from "@/app/auth/actions";
+export default function Login(){return <main className="auth"><form action={signIn} className="panel"><b className="brand">BuroPilot</b><h1>Anmelden</h1><p>Zuruck in Ihr digitales Buro.</p><label>E-Mail<input name="email" type="email" required autoComplete="email"/></label><label>Passwort<input name="password" type="password" required autoComplete="current-password"/></label><button>Anmelden</button><Link href="/forgot-password">Passwort vergessen?</Link><p>Noch kein Konto? <Link href="/register">Registrieren</Link></p></form></main>}
