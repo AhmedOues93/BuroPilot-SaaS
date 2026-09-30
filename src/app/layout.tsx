@@ -1,0 +1,1 @@
+import "./globals.css";export const metadata={title:"BuroPilot",description:"Büroarbeit automatisch erledigen."};export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="de"><body>{children}</body></html>}
