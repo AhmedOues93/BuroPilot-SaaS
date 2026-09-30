@@ -1,0 +1,4 @@
+import type { ExecutionMode,ProposedAction } from "@/lib/domain/contracts";
+export type BusinessPolicy={automaticReplyAllowed:boolean;priceSendingAllowed:boolean;complaintsRequireApproval:boolean};
+export type PolicyDecision={mode:ExecutionMode;allowed:boolean;reasonCode:string};
+export function decideAction(action:ProposedAction,policy:BusinessPolicy):PolicyDecision{if(action.type==="SEND_REPLY"){if(!policy.automaticReplyAllowed)return{mode:"APPROVAL_REQUIRED",allowed:true,reasonCode:"AUTO_REPLY_DISABLED"};if(!policy.priceSendingAllowed&&action.payload.containsPrice===true)return{mode:"APPROVAL_REQUIRED",allowed:true,reasonCode:"PRICE_REQUIRES_APPROVAL"};}if(action.payload.intent==="COMPLAINT"&&policy.complaintsRequireApproval)return{mode:"APPROVAL_REQUIRED",allowed:true,reasonCode:"COMPLAINT_REQUIRES_APPROVAL"};return{mode:"AUTO",allowed:true,reasonCode:"POLICY_ALLOWS_AUTO"};}
