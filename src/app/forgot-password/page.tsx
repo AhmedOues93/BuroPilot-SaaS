@@ -1,0 +1,2 @@
+import { requestPasswordReset } from "@/app/auth/actions";
+export default function Forgot(){return <main className="auth"><form action={requestPasswordReset} className="panel"><b className="brand">BuroPilot</b><h1>Passwort zurucksetzen</h1><p>Wir senden einen sicheren Link an Ihre E-Mail-Adresse.</p><label>E-Mail<input name="email" type="email" required/></label><button>Link senden</button></form></main>}
